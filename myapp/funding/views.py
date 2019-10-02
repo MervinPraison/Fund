@@ -27,8 +27,12 @@ def detail(request, fund_id):
 
 def newcall(request):
     latest_commitment_list = data_commitment.objects.order_by('commitment_id')[:100]
+    data_fund_investment_list = data_fund_investment.objects.order_by('id')[:100]
+    dfi = data_fund_investment.objects.select_related('commitment_id')
     template = loader.get_template('funding/newcall.html')
     context = {
         'latest_commitment_list': latest_commitment_list,
+        'data_fund_investment_list': data_fund_investment_list,
+        'dfi': dfi
     }
     return HttpResponse(template.render(context, request))

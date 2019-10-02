@@ -2,32 +2,26 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body class=" m-5">
+<div class="container">
 <h1>Dashboard</h1>
+</div>
 <br />
 <div class="container">
-<!-- {% if latest_fund_list %}
-    <ul>
-    {% for fund in latest_fund_list %}
-        <li><a href="{% url 'funding:detail' fund.fund_id %}">{{ fund.fund_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No funds are available.</p>
-{% endif %} -->
 
 {% if data_calls %}
     <table class="table table-hover">
-    <tr>
     {% for data_call in data_calls %}
+    <tr>
         <td><strong>Date: {{data_call.date}}</strong></td>
         <td><strong>Call #: {{data_call.call_id}}</strong></td>
-        <table class="table table-hover">
+        <td>
         {% for data_fund_investment in data_call.data_fund_investment_set.all %}
-            <tr><td>Fund {{ forloop.counter }}</td><td>{{data_fund_investment.call_id.capital_requirement}}</td></tr>
+            <strong>Fund {{ forloop.counter }}: </strong>{{data_fund_investment.call_id.capital_requirement}}
         {% endfor %}
-        </table>
-    {% endfor %}
+        </td>
     </tr>
+    {% endfor %}
+    
     </table>
 {% endif %}
 </div>

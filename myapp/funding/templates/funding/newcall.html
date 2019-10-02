@@ -7,13 +7,16 @@
 </div>
 <br />
 <div class="container">
+{% load mathfilters %}
 {% if latest_commitment_list %}
     <table class="table table-hover">
         <tr>
-        <th>Commitment ID</td>
-        <th>Fund ID</td>
-        <th>Date</td>
-        <th>Amount</td>
+        <th>Commitment ID</th>
+        <th>Fund ID</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Total Drawdown Notice</th>
+        <th>Undrawn Capital</th>
         </tr>
     <tbody>
     {% for commitment in latest_commitment_list %}
@@ -22,6 +25,14 @@
         <td>{{ commitment.fund_id }}</td>
         <td>{{ commitment.date }}</td>
         <td>{{ commitment.amount }}</td>
+        
+        {% for df in dfi %}
+            {% if df.commitment_id.commitment_id ==  commitment.commitment_id %}
+            <td>{{ df.call_id.capital_requirement }}</td>
+            <td>{{ commitment.amount|sub:df.call_id.capital_requirement }}</td>
+            {% endif %}
+        {% endfor %}
+        
         </tr>
     {% endfor %}
     </tbody>
@@ -29,6 +40,10 @@
 {% else %}
     <p>No commitments are available.</p>
 {% endif %}
+
+
+
+
 </div>
 </body>
 </html>
