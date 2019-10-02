@@ -4,6 +4,7 @@
 
 * https://praison.com/funding/
 * https://praison.com/funding/newcall/
+* **Admin:** https://praison.com/funding/administrator/
 
 ## Installation
 
