@@ -24,14 +24,17 @@
         <td>{{ commitment.commitment_id }}</td>
         <td>{{ commitment.fund_id }}</td>
         <td>{{ commitment.date }}</td>
-        <td>{{ commitment.amount }}</td>
-        
-        {% for df in dfi %}
-            {% if df.commitment_id.commitment_id ==  commitment.commitment_id %}
-            <td>{{ df.call_id.capital_requirement }}</td>
-            <td>{{ commitment.amount|sub:df.call_id.capital_requirement }}</td>
-            {% endif %}
-        {% endfor %}
+        <td>{{ commitment.amount }}
+        <td>
+            {% for commit in commitment.data_fund_investment_set.all %}
+                {{commit.call_id.capital_requirement}}
+            {% endfor %}
+        </td>
+        <td>
+            {% for commit in commitment.data_fund_investment_set.all %}
+                {{commitment.amount|sub:commit.call_id.capital_requirement}}
+            {% endfor %}
+        </td>
         
         </tr>
     {% endfor %}
