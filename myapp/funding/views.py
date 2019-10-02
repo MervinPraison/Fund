@@ -7,17 +7,10 @@ from .models import data_fund, data_fund_investment, data_call, data_commitment
 def index(request):
     latest_fund_list = data_fund.objects.order_by('fund_id')[:5]
     data_calls = data_call.objects.all() # optimizing
-    # d = data_call.objects.filter(call_id=1)
-    # d = data_fund_investment.objects.filter(call_id=1).select_related('call_id')
-    # call_id = d.call_id
-    # commitment_id = d.commitment_id
-    # fund_id = d.fund_id
     template = loader.get_template('funding/index.html')
     context = {
         'latest_fund_list': latest_fund_list,
         'data_calls': data_calls,
-        # 'commitment_id': commitment_id,
-        # 'fund_id': fund_id,
     }
     return HttpResponse(template.render(context, request))
 
