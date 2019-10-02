@@ -20,3 +20,4 @@ python myapp/manage.py runserver
 
 * **Visit:** http://localhost:8000/
 * **New Call Page:** http://localhost:8000/newcall/
+* **Admin:** http://localhost:8000/funding/administrator/
