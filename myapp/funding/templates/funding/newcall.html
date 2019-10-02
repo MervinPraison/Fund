@@ -31,9 +31,13 @@
             {% endfor %}
         </td>
         <td>
+            {% if commitment.data_fund_investment_set.all %}
             {% for commit in commitment.data_fund_investment_set.all %}
                 {{commitment.amount|sub:commit.call_id.capital_requirement}}
             {% endfor %}
+            {% else %}
+                {{ commitment.amount }}
+            {% endif %}
         </td>
         
         </tr>
