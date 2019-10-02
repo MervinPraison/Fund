@@ -13,5 +13,5 @@ pip install -r requirements.txt
 python myapp/manage.py runserver
 ```
 
-http://localhost:8000/
-http://localhost:8000/newcall/
+* **Visit:** http://localhost:8000/
+* **New Call Page:** http://localhost:8000/newcall/
